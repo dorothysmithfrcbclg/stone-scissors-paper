@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Камень, Ножницы, Бумага</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #result {
+            font-size: 24px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="result">Сделай свой выбор: Камень, Ножницы или Бумага</div>
+    <button onclick="makeChoice('rock')">Камень</button>
+    <button onclick="makeChoice('scissors')">Ножницы</button>
+    <button onclick="makeChoice('paper')">Бумага</button>
+
+    <script>
+        function makeChoice(userChoice) {
+            const choices = ['rock', 'scissors', 'paper'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            let resultMessage = "Ты выбрал " + userChoice + ". Компьютер выбрал " + computerChoice + ". ";
+
+            if (userChoice === computerChoice) {
+                resultMessage += "Ничья! Попробуй еще раз.";
+            } else if (
+                (userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'scissors' && computerChoice === 'paper') ||
+                (userChoice === 'paper' && computerChoice === 'rock')
+            ) {
+                resultMessage += "Ты победил!";
+            } else {
+                resultMessage += "Компьютер победил. Попробуй еще раз.";
+            }
+
+            document.getElementById("result").innerText = resultMessage;
+        }
+    </script>
+</body>
+</html>
